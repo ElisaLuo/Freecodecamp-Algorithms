@@ -6,23 +6,19 @@ function reverseString(str) {
 
 //Factorialization
 function factorialize(num) {
-  var j=0;
-  var k = num-1;
-  if (num < 0){
-    return false;
+  var numbers = [];
+
+  if(num === 0){
+    return 1;
   }
-  else if(num===0 || num === 1){
-    j=1;
+
+  for(var i = num; i > 0; i--){
+    numbers.push(i);
   }
-  else{
-    j = num*k;
-    
-    while (k -1 >0){
-      k = k-1;
-      j =  j * k;
-    }
+  function getFactor(total, factor) {
+    return total * factor;
   }
-  return j;
+  return numbers.reduce(getFactor);
 }
 
 
