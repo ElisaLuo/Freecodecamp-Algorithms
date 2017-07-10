@@ -25,7 +25,8 @@ function factorialize(num) {
 //Palindromes
 function palindrome(str) {
   // Good luck!
-  if (str.replace(/\s/g,'').replace(/,|_|(|)|:|-|/g, '').replace(/\W/g, '').toLowerCase().split("").reverse().join("")===str.replace(/\s/g,'').replace(/,|_|(|)|:|-|/g, '').replace(/\W/g, '').toLowerCase()){
+  var rawString = str.replace(/[\W_]/g, "").toLowerCase();
+  if (rawString.split("").reverse().join("")===rawString){
     return true;
   }
   else{
