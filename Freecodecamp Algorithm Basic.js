@@ -37,20 +37,15 @@ function palindrome(str) {
 
 
 //Longest Word 
-function findLongestWord(str) {
-  var i = 0;
-  var j = [];
-  var words = str.split(" ");
-  while (i < words.length){
-    j.push(words[i].length);
-    i++;
+var words = str.split(" ");
+  var wordLength = [];
+  for(var i = 0; i < words.length; i++){
+    wordLength.push(words[i].length);
   }
-  j.sort(function(a,b) {
-  return b-a;
+  wordLength.sort(function(a, b){
+    return b - a;
   });
-  return j[0];
-}
-
+  return wordLength[0];
 
 //Title Case a Sentence
 function titleCase(str) {
