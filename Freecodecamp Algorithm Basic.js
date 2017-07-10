@@ -49,15 +49,12 @@ var words = str.split(" ");
 
 //Title Case a Sentence
 function titleCase(str) {
-  var a = str.toLowerCase().split(" ");
-  var b = 0;
-  var c =[];
-  while (b < a.length) {
-    c.push(a[b][0].toUpperCase() + a[b].substring(1,a[b].length));
-    b++;
+var rawString = str.toLowerCase().split(" ");
+  var upperCase = [];
+  for(var i = 0; i < rawString.length; i++){
+    upperCase.push(rawString[i][0].toUpperCase() + rawString[i].substring(1, rawString[i].length));
   }
-  var d = c.join(" ");
-  return d;
+  return upperCase.join(" ");
 }
 
 
