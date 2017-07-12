@@ -57,6 +57,28 @@ var rawString = str.toLowerCase().split(" ");
   return upperCase.join(" ");
 }
 
+//Return largest number in arrays
+function largestOfFour(arr) {
+  var largestNum = [];
+  for(var i = 0; i < arr.length; i++){
+    arr[i].sort(function(a, b){
+      return b - a;
+    });
+    largestNum.push(arr[i][0]);
+  }
+  return largestNum;
+}
+
+//Confirm the ending
+function confirmEnding(str, target) {
+  if(str.slice(str.length - target.length, str.length) == target){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 
 //Repeating a string
 function repeatStringNumTimes(str, num){
