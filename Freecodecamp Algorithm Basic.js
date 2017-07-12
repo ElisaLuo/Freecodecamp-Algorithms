@@ -81,44 +81,30 @@ function confirmEnding(str, target) {
 
 
 //Repeating a string
-function repeatStringNumTimes(str, num){
-  var b = "";
-  if (num > 0){
-    b = b + str;
-    while (num-1 > 0){
-      num = num - 1;
-      b = b + str;
+function repeatStringNumTimes(str, num) {
+  var answer = [];
+  for(var i = 0; i < num; i++){
+    answer.push(str);
   }
-    return b;
-  }
-  else{
-    return "";
-  }
+  return answer.join("");
 }
 
 
 //Truncate a string
 function truncateString(str, num) {
-   if(str.length <= num){
+  if(str.length <= num){
     return str;
   }
   else{
-  var a = str.split("");
-  while(num >= 0){
-      num--;
-    if(num < 3){
-      var c = str.substring(0, num+1)+"...";
-      return c;
+    if(num-3 < 0){
+      str.split("");
+      return str.slice(0, num) + "...";
     }
-    else if(str.length > num){
-       var d = str.substring(0, num-2)+"...";
-      return d;
+    else{
+      return str.slice(0, num-3) + "...";
     }
-     
-  }
   }
 }
-
 
 //Chunky Monkey
 function chunkArrayInGroups(arr, size) {
