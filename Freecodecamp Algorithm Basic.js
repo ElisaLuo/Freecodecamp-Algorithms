@@ -108,108 +108,85 @@ function truncateString(str, num) {
 
 //Chunky Monkey
 function chunkArrayInGroups(arr, size) {
-  var c = [];
-  var d = 0;
- while (d<size){
-    var a = arr.slice(d*size,(d+2)*size);
-    d++;
-    c.push(a);
-    return c;
- }
-return c;
+  var answer = [];
+  for(var i = 0; i < arr.length/size; i++){
+    answer.push(arr.slice(i * size, (i + 1) * size));
+  }
+  return answer;
 }
 
 
 //Slasher Flick
 function slasher(arr, howMany) {
-  var a = 0;
-  if (howMany > 0){
-  while(a < howMany){
-    return arr.slice(howMany, arr.length + 1);
-  }
-  }
-  else{
-    return arr;
-  }
+  return arr.slice(howMany, arr.length + 1);
 }
 
 
 //Mutations
 function mutation(arr) {
-  arr[0].toLowerCase();
-  var a = arr[1].toLowerCase().split("");
-  var b = 0;
-  while (b < a.length){
-     if (arr[0] === "hello" && arr[1] === "hey"){
-      return false;
-    }
-     else if (arr[0].indexOf(a[b]) !== -1){ 
-       b++;
-    return true;
-      }
-   
-    else{
-      return false;
-    }
+  var letters = arr[1].toLowerCase().split("");
+  var answers = [];
+  
+  for(var i = 0; i < letters.length; i++){
+    answers.push(arr[0].toLowerCase().includes(letters[i]));
   }
+  
+  return answers.every(function (element) { 
+    return element === true; 
+  } );
 }
 
 
 //Falsy Bouncer
 function bouncer(arr) {
-  arr = arr.filter(Boolean);
-  return arr;
+  return arr.filter(Boolean);;
 }
 
 
 //Seek and Destroy
 function destroyer(arr) {
   var args = Array.from(arguments).slice(1);
-  function sliced(value){
-      return value !== args[0];  
+  for(var i = 0; i < arr.length; i++){
+    for(var j = 0; j < args.length; j++){
+      if(arr[i] == args[j]){
+        delete arr[i];
+      }
+    }
   }
-  function sliced1(value){
-      return value !== args[1];  
-  }
-  function sliced2(value){
-      return value !== args[2];  
-  }
- return arr.filter(sliced).filter(sliced1).filter(sliced2);
+  return arr.filter(Boolean);
 }
 
 
 //Where do I belong
 function getIndexToIns(arr, num) {
-  arr.sort(function(a,b){
-    return a - b;
-  });
-  var b = [];
+  var answer = [];
   for(var i = 0; i < arr.length; i++){
-    if (arr[i] < num){
-      b.push(arr[i]);
+    if(arr[i] < num){
+      answer.push(arr[i]);
     }
   }
-  return b.length;
+  return answer.length;
 }
 
 
 //Caesars Cipher
 function rot13(str) { // LBH QVQ VG!
-  var a = str.split("");
-  var b = [];
-  var c = [];
+  var answers = [];
+  var correct = [];
+  var final = [];
+  
   for(var i = 0; i < str.length; i++){
-    if(String.charCodeAt(a[i]) < 65 || String.charCodeAt(a[i]) > 90){
-      b.push((a[i].charCodeAt()));
+    answers.push(str.split("")[i].charCodeAt());
+    if(answers[i] < 65 || answers[i] > 90){
+      correct.push(answers[i]);
     }
-    else if (String.charCodeAt(a[i]) <= 77) {
-      b.push((a[i].charCodeAt()+13));
+    else if(answers[i] <= 77){
+      correct.push(answers[i] + 13);
     }
-    else if(String.charCodeAt(a[i]) >= 77){
-      b.push((a[i].charCodeAt()-13));
+    else if(answers[i] >= 77){
+      correct.push(answers[i] - 13);
     }
-
-    c.push(String.fromCharCode(b[i]));
+    final.push(String.fromCharCode(correct[i]));
   }
-  return c.join("");
+  return final.join("");
 }
