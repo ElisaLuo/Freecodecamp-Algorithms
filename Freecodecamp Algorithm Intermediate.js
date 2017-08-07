@@ -1,56 +1,24 @@
 //Sum all numbers in a range
 function sumAll(arr) {
-  var j = 0;
-  var k = arr[0]+1;
-  var i = arr[1]+1;
+  var nums = [];
+  arr.sort(function(a, b){
+    return a - b;
+  });
+  for(var i = arr[0]; i < arr[1] + 1; i++){
+    nums.push(i);
+  }
+  return nums.reduce(function(total, num){
+    return total+num;
+  });
   
-  if(arr[0] < arr[1]){
-    j = arr[0]+k;
-    while (k + 1 <= arr[1]){
-      k = k+1;
-      j = j + k;
-    }
-    return j;
-  }
-  else{
-    j = arr[1]+i;
-    while (i + 1 <= arr[0]){
-      i = i+1;
-      j = j + i;
-    }
-    return j;
-  }
 }
 
 //Diff two arrays
 function diffArray(arr1, arr2) {
-  var newArr = [];
-  arr1.sort();
-  arr2.sort();
-
-  if(arr1.length < arr2.length){
-    for (var i = 0; i < arr1.length; i++){
-      if(arr2.indexOf(arr1[i]) === -1){
-        newArr.push(arr1[i]);
-      }
-      else if(arr1.indexOf(arr2[i]) === -1){
-        newArr.push(arr2[i]);
-      }
-    }
-  }
-  else if(arr1.length > arr2.length){
-    for (var k = 0; k < arr1.length; k++){
-      if(arr1.indexOf(arr2[k]) === -1){
-        newArr.push(arr2[k]);
-      }
-      else if(arr2.indexOf(arr1[k]) === -1){
-        newArr.push(arr1[k]);
-      }
-    }
-  }
-  return newArr;
+  return arr1.concat(arr2).filter(function(item){
+    return !arr1.includes(item) || !arr2.includes(item);
+  }); 
 }
-
 
 //Roman numberal converter
 function convertToRoman(num) {
@@ -103,7 +71,6 @@ var romans = ["I", "V", "X", "L", "C", "D", "M"],
 //Wherefore art thou
 function whatIsInAName(collection, source) {
   var srcKeys = Object.keys(source);
-
   return collection.filter(function (obj) {
     for(var i = 0; i < srcKeys.length; i++) {
       if(!obj.hasOwnProperty(srcKeys[i]) || obj[srcKeys[i]] !== source[srcKeys[i]]) {
